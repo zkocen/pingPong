@@ -59,31 +59,27 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v1) {
 
-                int points = ScoreBoard.points();
                 int player1 = ScoreBoard.player1point();
 
-                if (player1 <= 11 && player1 != 0) {
+                if (ScoreBoard.gameNotFinished()) {
                     final String s1 = Integer.toString(player1);
                     btn1.setText(s1);
                 }
 
-                if (player1 == 11) {
+                if (ScoreBoard.gameFinishedPl1()) {
                     btn1.setText("CONGRATULATIONS YOU WON!!!");
                     btn1.setEnabled(false);
                     btn2.setEnabled(false);
                 }
 
-                if (points % 3 == 1) {
-                    if (ScoreBoard.serve1 == true) {
+                if (ScoreBoard.changeServe()) {
+                    if (ScoreBoard.player2Serves()) {
                         pl2Serve.setVisibility(View.VISIBLE);
                         pl1Serve.setVisibility(View.INVISIBLE);
-                        ScoreBoard.serve1 = false;
-                        ScoreBoard.serve2 = true;
                     } else {
                         pl1Serve.setVisibility(View.VISIBLE);
                         pl2Serve.setVisibility(View.INVISIBLE);
-                        ScoreBoard.serve2 = false;
-                        ScoreBoard.serve1 = true;
+
                     }
                 }
             }
@@ -94,31 +90,26 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v2) {
 
-                int points = ScoreBoard.points();
                 int player2 = ScoreBoard.player2point();
 
-                if (player2 <= 11 && player2 != 0) {
+                if (ScoreBoard.gameNotFinished()) {
                     final String s2 = Integer.toString(player2);
                     btn2.setText(s2);
                 }
 
-                if (player2 == 11) {
+                if (ScoreBoard.gameFinishedPl2()) {
                     btn2.setText("YOU WON!!!!!!!");
                     btn1.setEnabled(false);
                     btn2.setEnabled(false);
                 }
 
-                if (points % 3 == 1) {
-                    if (ScoreBoard.serve2 == true) {
+                if (ScoreBoard.changeServe()) {
+                    if (ScoreBoard.player1Serves()) {
                         pl1Serve.setVisibility(View.VISIBLE);
                         pl2Serve.setVisibility(View.INVISIBLE);
-                        ScoreBoard.serve2 = false;
-                        ScoreBoard.serve1 = true;
                     } else {
                         pl2Serve.setVisibility(View.VISIBLE);
                         pl1Serve.setVisibility(View.INVISIBLE);
-                        ScoreBoard.serve1 = false;
-                        ScoreBoard.serve2 = true;
                     }
                 }
             }

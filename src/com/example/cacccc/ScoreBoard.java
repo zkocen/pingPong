@@ -14,10 +14,12 @@ public class ScoreBoard {
     }
 
     public static int player1point() {
+        ++pl;
         return ++pl1;
     }
 
     public static int player2point() {
+        ++pl;
         return ++pl2;
     }
 
@@ -37,5 +39,65 @@ public class ScoreBoard {
     public static void secondServesState() {
         serve1 = true;
         serve2 = false;
+    }
+
+    public static boolean gameNotFinished() {
+        if (pl1 <= 11 && pl1 != 0) {
+            return true;
+        }
+        if (pl2 <= 11 && pl2 != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean gameFinishedPl2() {
+        if (pl2 == 11) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean gameFinishedPl1() {
+        if (pl2 == 11) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean changeServe() {
+        if (pl % 3 == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean player2Serves() {
+        if (changeServe()) {
+            serve1 = false;
+            serve2 = true;
+            return true;
+        } else {
+            serve2 = false;
+            serve1 = true;
+            return false;
+        }
+    }
+
+    public static boolean player1Serves() {
+        if (changeServe()) {
+            serve2 = false;
+            serve1 = true;
+            return true;
+        } else {
+            serve1 = false;
+            serve2 = true;
+            return false;
+        }
     }
 }
