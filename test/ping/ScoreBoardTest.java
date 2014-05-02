@@ -44,7 +44,7 @@ public class ScoreBoardTest {
     }
 
     @Test
-    public void whenPlayer1Scores11PointsHeWins() throws Exception {
+    public void whenPlayer1Scores21PointsHeWins() throws Exception {
         assertEquals(0, ScoreBoard.pl1);
         ScoreBoard.player1point();
         assertEquals(1, ScoreBoard.pl1);
@@ -92,7 +92,7 @@ public class ScoreBoardTest {
     }
 
     @Test
-    public void whenPlayer2Scores11PointsHeWins() throws Exception {
+    public void whenPlayer2Scores21PointsHeWins() throws Exception {
         assertEquals(0, ScoreBoard.pl2);
         ScoreBoard.player2point();
         assertEquals(1, ScoreBoard.pl2);
