@@ -29,7 +29,6 @@ public class MainActivity extends ActionBarActivity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
         final Button btn1 = (Button) findViewById(R.id.button1);
         final Button btn2 = (Button) findViewById(R.id.button2);
 
@@ -39,6 +38,8 @@ public class MainActivity extends ActionBarActivity {
         final TextView pl2Serve = (TextView) findViewById(R.id.serve2);
         pl2Serve.setVisibility(View.INVISIBLE);
         pl1Serve.setVisibility(View.VISIBLE);
+        btn1.setText("0");
+        btn2.setText("0");
 
         btnReset.setOnClickListener(new OnClickListener() {
 
@@ -59,28 +60,23 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v1) {
 
-                int player1 = ScoreBoard.player1point();
-
-                if (ScoreBoard.gameNotFinished()) {
-                    final String s1 = Integer.toString(player1);
-                    btn1.setText(s1);
-                }
+                ScoreBoard.player1point();
 
                 if (ScoreBoard.gameFinishedPl1()) {
                     btn1.setText("CONGRATULATIONS YOU WON!!!");
                     btn1.setEnabled(false);
                     btn2.setEnabled(false);
+                } else {
+                    final String s1 = Integer.toString(ScoreBoard.pl1);
+                    btn1.setText(s1);
                 }
 
-                if (ScoreBoard.changeServe()) {
-                    if (ScoreBoard.player2Serves()) {
-                        pl2Serve.setVisibility(View.VISIBLE);
-                        pl1Serve.setVisibility(View.INVISIBLE);
-                    } else {
-                        pl1Serve.setVisibility(View.VISIBLE);
-                        pl2Serve.setVisibility(View.INVISIBLE);
-
-                    }
+                if (ScoreBoard.player2Serves()) {
+                    pl2Serve.setVisibility(View.VISIBLE);
+                    pl1Serve.setVisibility(View.INVISIBLE);
+                } else {
+                    pl1Serve.setVisibility(View.VISIBLE);
+                    pl2Serve.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -90,27 +86,23 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v2) {
 
-                int player2 = ScoreBoard.player2point();
-
-                if (ScoreBoard.gameNotFinished()) {
-                    final String s2 = Integer.toString(player2);
-                    btn2.setText(s2);
-                }
+                ScoreBoard.player2point();
 
                 if (ScoreBoard.gameFinishedPl2()) {
                     btn2.setText("YOU WON!!!!!!!");
                     btn1.setEnabled(false);
                     btn2.setEnabled(false);
+                } else {
+                    final String s2 = Integer.toString(ScoreBoard.pl2);
+                    btn2.setText(s2);
                 }
 
-                if (ScoreBoard.changeServe()) {
-                    if (ScoreBoard.player1Serves()) {
-                        pl1Serve.setVisibility(View.VISIBLE);
-                        pl2Serve.setVisibility(View.INVISIBLE);
-                    } else {
-                        pl2Serve.setVisibility(View.VISIBLE);
-                        pl1Serve.setVisibility(View.INVISIBLE);
-                    }
+                if (ScoreBoard.player1Serves()) {
+                    pl1Serve.setVisibility(View.VISIBLE);
+                    pl2Serve.setVisibility(View.INVISIBLE);
+                } else {
+                    pl2Serve.setVisibility(View.VISIBLE);
+                    pl1Serve.setVisibility(View.INVISIBLE);
                 }
             }
         });

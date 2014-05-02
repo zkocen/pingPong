@@ -2,102 +2,62 @@ package com.example.cacccc;
 
 public class ScoreBoard {
 
-    public static int pl = 1;
     public static int pl1 = 0;
     public static int pl2 = 0;
 
     public static boolean serve1 = true;
     public static boolean serve2 = false;
 
-    public static int points() {
-        return ++pl;
+    public static void player1point() {
+        pointScored(true);
     }
 
-    public static int player1point() {
-        ++pl;
-        return ++pl1;
-    }
-
-    public static int player2point() {
-        ++pl;
-        return ++pl2;
+    public static void player2point() {
+        pointScored(false);
     }
 
     public static void reset() {
-        pl = 1;
         pl1 = 0;
         pl2 = 0;
         serve1 = true;
         serve2 = false;
     }
 
-    public static void firstServesState() {
-        serve1 = false;
-        serve2 = true;
-    }
-
-    public static void secondServesState() {
-        serve1 = true;
-        serve2 = false;
+    public static void toggleService() {
+        serve1 = serve2;
+        serve2 = !serve1;
     }
 
     public static boolean gameNotFinished() {
-        if (pl1 <= 11 && pl1 != 0) {
-            return true;
-        }
-        if (pl2 <= 11 && pl2 != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static boolean gameFinishedPl2() {
-        if (pl2 == 11) {
-            return true;
-        } else {
-            return false;
-        }
+        return !gameFinishedPl1() && !gameFinishedPl2();
     }
 
     public static boolean gameFinishedPl1() {
-        if (pl2 == 11) {
-            return true;
-
-        } else {
-            return false;
-        }
+        return pl1 >= 21 && pl1 - pl2 > 1;
     }
 
-    public static boolean changeServe() {
-        if (pl % 3 == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean gameFinishedPl2() {
+        return pl2 >= 21 && pl2 - pl1 > 1;
     }
 
-    public static boolean player2Serves() {
-        if (changeServe()) {
-            serve1 = false;
-            serve2 = true;
-            return true;
+    public static void pointScored(boolean player1) {
+        if (player1) {
+            pl1++;
         } else {
-            serve2 = false;
-            serve1 = true;
-            return false;
+            pl2++;
+        }
+
+        System.out.println(pl1 + ", " + pl2);
+        if ((pl1 + pl2) % 3 == 0) {
+            toggleService();
         }
     }
 
     public static boolean player1Serves() {
-        if (changeServe()) {
-            serve2 = false;
-            serve1 = true;
-            return true;
-        } else {
-            serve1 = false;
-            serve2 = true;
-            return false;
-        }
+        return serve1;
+    }
+
+    public static boolean player2Serves() {
+        return serve2;
     }
 }
