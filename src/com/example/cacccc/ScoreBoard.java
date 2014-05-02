@@ -2,9 +2,9 @@ package com.example.cacccc;
 
 public class ScoreBoard {
 
-    private static int pl = 1;
-    private static int pl1 = 0;
-    private static int pl2 = 0;
+    public static int pl = 1;
+    public static int pl1 = 0;
+    public static int pl2 = 0;
 
     public static boolean serve1 = true;
     public static boolean serve2 = false;
@@ -13,7 +13,7 @@ public class ScoreBoard {
         return ++pl;
     }
 
-    public static int playe1point() {
+    public static int player1point() {
         return ++pl1;
     }
 

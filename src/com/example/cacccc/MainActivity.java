@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v1) {
 
                 int points = ScoreBoard.points();
-                int player1 = ScoreBoard.playe1point();
+                int player1 = ScoreBoard.player1point();
 
                 if (player1 <= 11 && player1 != 0) {
                     final String s1 = Integer.toString(player1);
