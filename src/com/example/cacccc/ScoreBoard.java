@@ -1,7 +1,9 @@
 package com.example.cacccc;
 
+
 public class ScoreBoard {
 
+    public static String gameId;
     public static int pl1 = 0;
     public static int pl2 = 0;
 
@@ -10,10 +12,16 @@ public class ScoreBoard {
 
     public static void player1point() {
         pointScored(true);
+        playerScoreToServer("1");
+    }
+
+    private static void playerScoreToServer(String playerId) {
+        new Server.Score().execute(gameId, playerId);
     }
 
     public static void player2point() {
         pointScored(false);
+        playerScoreToServer("2");
     }
 
     public static void reset() {
@@ -21,6 +29,7 @@ public class ScoreBoard {
         pl2 = 0;
         serve1 = true;
         serve2 = false;
+        new Server.NewGame().execute();
     }
 
     public static void toggleService() {
@@ -60,4 +69,5 @@ public class ScoreBoard {
     public static boolean player2Serves() {
         return serve2;
     }
+
 }
